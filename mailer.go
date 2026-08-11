@@ -100,12 +100,20 @@ func paymentInvoiceHTML(o *Order, storeURL string) string {
 	var itemsHTML string
 	for _, it := range o.Items {
 		lineTotal := int64(it.Quantity) * it.Price
+		desc := ""
+		if it.Description != "" {
+			desc = `<br><span style="color:#6b7280;font-size:12px">` + htmlEscape(it.Description) + `</span>`
+		}
+		img := ""
+		if it.Image != "" {
+			img = `<img src="` + htmlEscape(it.Image) + `" alt="" width="44" height="44" style="width:44px;height:44px;object-fit:cover;border-radius:8px;vertical-align:middle;margin-right:12px"/>`
+		}
 		itemsHTML += fmt.Sprintf(
-			`<tr><td style="padding:10px 0;font-size:14px;color:#111827">%s%s</td>
+			`<tr><td style="padding:10px 0;font-size:14px;color:#111827">%s<span>%s%s%s</span></td>
 <td style="padding:10px 0;text-align:center;font-size:14px;color:#374151">%d</td>
 <td style="padding:10px 0;text-align:right;font-size:14px;color:#374151">₦%.2f</td>
 <td style="padding:10px 0;text-align:right;font-size:14px;color:#111827;font-weight:600">₦%.2f</td></tr>`,
-			htmlEscape(it.Name), variantHTML(it), it.Quantity, naira(it.Price), naira(lineTotal),
+			img, htmlEscape(it.Name), desc, variantHTML(it), it.Quantity, naira(it.Price), naira(lineTotal),
 		)
 	}
 

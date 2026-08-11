@@ -13,9 +13,6 @@ func corsMiddleware(origins string) func(http.Handler) http.Handler {
 			allowed[o] = true
 		}
 	}
-	if len(allowed) == 0 {
-		allowed["http://localhost:3000"] = true
-	}
 
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

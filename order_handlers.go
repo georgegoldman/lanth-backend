@@ -20,10 +20,12 @@ import (
 )
 
 type checkoutItem struct {
-	ProductID string `json:"product_id"`
-	Quantity  int    `json:"quantity"`
-	Size      string `json:"size,omitempty"`
-	Color     string `json:"color,omitempty"`
+	ProductID   string `json:"product_id"`
+	Quantity    int    `json:"quantity"`
+	Size        string `json:"size,omitempty"`
+	Color       string `json:"color,omitempty"`
+	Image       string `json:"image,omitempty"`
+	Description string `json:"description,omitempty"`
 }
 
 type checkoutRequest struct {
@@ -110,12 +112,14 @@ func (a *App) checkout(w http.ResponseWriter, r *http.Request) {
 		}
 		total += int64(it.Quantity) * p.Price
 		items = append(items, OrderItem{
-			ProductID: p.ID,
-			Name:      p.Name,
-			Quantity:  it.Quantity,
-			Price:     p.Price,
-			Size:      it.Size,
-			Color:     it.Color,
+			ProductID:   p.ID,
+			Name:        p.Name,
+			Quantity:    it.Quantity,
+			Price:       p.Price,
+			Size:        it.Size,
+			Color:       it.Color,
+			Image:       strings.TrimSpace(it.Image),
+			Description: strings.TrimSpace(it.Description),
 		})
 	}
 

@@ -105,7 +105,7 @@ func main() {
 	mux.HandleFunc("POST /api/uploads", app.admin(app.uploadImage))
 
 	log.Printf("lanth-backend listening on :%s", port)
-	if err := http.ListenAndServe(":"+port, corsMiddleware(getenv("CORS_ORIGINS", "http://localhost:3000"))(mux)); err != nil {
+	if err := http.ListenAndServe(":"+port, corsMiddleware(getenv("CORS_ORIGINS", "http://localhost:3000,http://localhost:3001"))(mux)); err != nil {
 		log.Fatal(err)
 	}
 }

@@ -54,12 +54,14 @@ type Product struct {
 }
 
 type OrderItem struct {
-	ProductID string `json:"product_id" bson:"product_id"`
-	Name      string `json:"name" bson:"name"`
-	Quantity  int    `json:"quantity" bson:"quantity"`
-	Price     int64  `json:"price" bson:"price"`
-	Size      string `json:"size,omitempty" bson:"size,omitempty"`
-	Color     string `json:"color,omitempty" bson:"color,omitempty"`
+	ProductID   string `json:"product_id" bson:"product_id"`
+	Name        string `json:"name" bson:"name"`
+	Quantity    int    `json:"quantity" bson:"quantity"`
+	Price       int64  `json:"price" bson:"price"`
+	Size        string `json:"size,omitempty" bson:"size,omitempty"`
+	Color       string `json:"color,omitempty" bson:"color,omitempty"`
+	Image       string `json:"image,omitempty" bson:"image,omitempty"`
+	Description string `json:"description,omitempty" bson:"description,omitempty"`
 }
 
 type PaymentInfo struct {

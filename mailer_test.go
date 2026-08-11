@@ -19,7 +19,7 @@ func TestPaymentInvoiceHTML(t *testing.T) {
 			Country: "Nigeria",
 		},
 		Items: []OrderItem{
-			{ProductID: "1", Name: "Lanth Sprint Runner", Quantity: 1, Price: 2200000, Size: "42", Color: "Orange"},
+			{ProductID: "1", Name: "Lanth Sprint Runner", Quantity: 1, Price: 2200000, Size: "42", Color: "Orange", Image: "https://cdn.example.com/runner.png", Description: "Lightweight running sneaker, orange mesh upper"},
 			{ProductID: "2", Name: "Lanth Retro High", Quantity: 2, Price: 1900000},
 		},
 		Subtotal:  6000000,
@@ -42,6 +42,8 @@ func TestPaymentInvoiceHTML(t *testing.T) {
 		"/tracking?number=LANT-17863809475CE9D1CC",
 		"Ada Obi",
 		"Lanth Sprint Runner",
+		"Lightweight running sneaker, orange mesh upper",
+		"cdn.example.com/runner.png",
 		"Size: 42",
 		"Lanth Retro High",
 		"Unit price",
