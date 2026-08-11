@@ -90,6 +90,10 @@ func main() {
 	mux.HandleFunc("GET /api/orders/{id}/tracking", app.getTracking)
 	mux.HandleFunc("GET /api/tracking/{number}", app.getTrackingByNumber)
 
+	// Email (X-Admin-Key header) — used by the Next.js storefront to send
+	// account verification codes through the backend's configured mailer.
+	mux.HandleFunc("POST /api/emails/verification-code", app.admin(app.sendVerificationCode))
+
 	// Admin (X-Admin-Key header)
 	mux.HandleFunc("GET /api/orders", app.admin(app.listOrders))
 	mux.HandleFunc("POST /api/products", app.admin(app.createProduct))
